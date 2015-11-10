@@ -22,7 +22,9 @@
  * @externs
  */
 
+
 const backendApi = {};
+
 
 /**
  * @typedef {{
@@ -31,3 +33,11 @@ const backendApi = {};
  * }}
  */
 backendApi.DeployAppConfig;
+
+
+/**
+ * @typedef {{
+ *   apps: !Array<{name: string, containerImage: string}>
+ * }}
+ */
+backendApi.AppList;

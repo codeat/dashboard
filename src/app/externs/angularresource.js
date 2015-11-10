@@ -40,3 +40,9 @@ angular.Resource = function() {};
  * @param {function(!angular.$http.Response)=} opt_errback
  */
 angular.Resource.prototype.save = function(data, opt_callback, opt_errback) {};
+
+
+/**
+ * @param {function(!T)=} opt_callback
+ */
+angular.Resource.prototype.get = function(opt_callback) {};

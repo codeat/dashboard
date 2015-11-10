@@ -19,8 +19,20 @@
  * @final
  */
 export default class ServiceListController {
-  constructor() {
-    /** @export {!Array<string>} */
-    this.testServices = ['srvc1', 'srvc2'];
+	/**
+	 * @param {!angular.$resource} $resource
+	 * @ngInject
+	 */
+  constructor($resource) {
+    /** @type {!angular.Resource<!backendApi.AppList>} */
+    let resource = $resource('/api/apps');
+
+
+    /** @export {!Array<{name: string, containerImage: string}>} */
+    this.apps = [];
+
+    resource.get((response) => {
+      this.apps = response.apps;
+    });
   }
 }

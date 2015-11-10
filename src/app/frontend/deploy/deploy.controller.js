@@ -22,9 +22,10 @@ export default class DeployController {
   /**
    * @param {!angular.$resource} $resource
    * @param {!angular.$log} $log
+   * @param {!ui.router.$state} $state
    * @ngInject
    */
-  constructor($resource, $log) {
+  constructor($resource, $log, $state) {
     /** @export {string} */
     this.appName = '';
 
@@ -36,6 +37,9 @@ export default class DeployController {
 
     /** @private {!angular.$log} */
     this.log_ = $log;
+
+    /** @private {!ui.router.$state}} */
+    this.state_ = $state;
   }
 
   /**
@@ -54,6 +58,7 @@ export default class DeployController {
         deployAppConfig,
         (savedConfig) => {
           this.log_.info('Succesfully deployed application: ', savedConfig);
+          this.state_.go('servicelist');
         },
         (err) => {
           this.log_.error('Error deployng application:', err);

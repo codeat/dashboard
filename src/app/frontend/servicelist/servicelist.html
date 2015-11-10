@@ -14,8 +14,11 @@ See the License for the specific language governing permissions and
 limitations under the License.
 -->
 
-<div layout="vertical" layout-fill>
-  <header>
-    Service page. {{ctrl.testServices}}
-  </header>
+<div layout="column" layout-fill>
+  <md-card ng-repeat="app in ctrl.apps">
+    <md-card-content>
+      <h2 class="md-title">Name: {{app.name}}</h2>
+      <h2 class="md-title">Container Image: {{app.containerImage}}</h2>
+    </md-card-content>
+  </md-card>
 </div>

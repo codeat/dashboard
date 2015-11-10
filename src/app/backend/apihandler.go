@@ -46,6 +46,23 @@ func CreateApiHandler(client *client.Client) http.Handler {
 
 	wsContainer.Add(ws)
 
+	ws2 := new(restful.WebService)
+	ws2.Path("/api/apps").
+		Consumes(restful.MIME_JSON).
+		Produces(restful.MIME_JSON)
+	ws2.Route(ws2.GET("").To(func(request *restful.Request, response *restful.Response) {
+		apps, err := GetApps(client)
+		if err != nil {
+			HandleInternalError(response, err)
+			return
+		}
+
+		response.WriteHeaderAndEntity(http.StatusCreated, apps)
+	}).Writes(AppList{}))
+
+	wsContainer.Add(ws2)
+
+
 	return wsContainer
 }
 
